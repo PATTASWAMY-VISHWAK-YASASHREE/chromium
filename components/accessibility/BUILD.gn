@@ -37,11 +37,30 @@ source_set("penguin") {
   deps = [
     "//base",
     "//content/public/browser",
+    "//ui/gfx/geometry",
   ]
 
   if (is_android) {
     deps += [ ":penguin_jni_headers" ]
   }
+}
+
+source_set("penguin_unittests") {
+  testonly = true
+  sources = [
+    "penguin/penguin_client_unittest.cc",
+  ]
+
+  deps = [
+    ":penguin",
+    "//base",
+    "//base/test:test_support",
+    "//content/public/browser",
+    "//content/public/test:test_support",
+    "//testing/gmock",
+    "//testing/gtest",
+    "//ui/gfx/geometry",
+  ]
 }
 
 if (is_android) {
